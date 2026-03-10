@@ -47,7 +47,7 @@ Training BPTP on the CARGO dataset with one GPU:
 CUDA_VISIBLE_DEVICES=0 python3 tools/train_net.py --config-file ./configs/CARGO/BPTP.yml MODEL.DEVICE "cuda:0"
 ```
 
-Testing VDT on the CARGO dataset:
+Testing BPTP on the CARGO dataset:
 ```
 CUDA_VISIBLE_DEVICES=1 python3 tools/train_net.py --config-file ./configs/CARGO/BPTP.yml --eval-only MODEL.WEIGHTS your_model_pth_path MODEL.DEVICE "cuda:0"
 ```
