@@ -1,6 +1,6 @@
 # BPTP
 
-### Introduction
+
 * CARGO is a large-scale aerial-ground person re-identification (AGPReID) dataset, which captured from a synthesized scene in Unity3D.
 * CARGO contains 13 cameras (8 ground and 5 aerial cameras), 5000 person IDs, and 108563 person images.
 * **Camera 1 $\sim$ 5 belong to aerial cameras, and Camera 6 $\sim$ 13 belong to ground cameras.**
