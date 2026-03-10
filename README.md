@@ -1,4 +1,4 @@
-#BPTP
+# BPTP
 
 ### Introduction
 * CARGO is a large-scale aerial-ground person re-identification (AGPReID) dataset, which captured from a synthesized scene in Unity3D.
