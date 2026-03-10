@@ -1,0 +1,88 @@
+MODEL:
+  META_ARCHITECTURE: Baseline_query
+  PIXEL_MEAN: [127.5, 127.5, 127.5]
+  PIXEL_STD: [127.5, 127.5, 127.5]
+
+  BACKBONE:
+    NAME: build_dinov3
+    DEPTH: base
+    FEAT_DIM: 768
+    PRETRAIN_PATH: /data/public/vit/dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth
+    STRIDE_SIZE: (16, 16)
+
+  HEADS:
+    NAME: EmbeddingHead
+    NORM: BN
+    WITH_BNNECK: True
+    POOL_LAYER: Identity
+    NECK_FEAT: before
+    CLS_LAYER: Linear
+
+  LOSSES:
+    NAME: ("CrossEntropyLoss", "TripletLoss",)
+
+    CE:
+      EPSILON: 0.
+      SCALE: 1.
+
+    TRI:
+      MARGIN: 0.0
+      HARD_MINING: True
+      NORM_FEAT: False
+      SCALE: 1.
+
+
+INPUT:
+  SIZE_TRAIN: [ 256, 128 ]
+  SIZE_TEST: [ 256, 128 ]
+
+  REA:
+    ENABLED: True
+    PROB: 0.5
+
+  FLIP:
+    ENABLED: True
+
+  PADDING:
+    ENABLED: True
+
+DATALOADER:
+  SAMPLER_TRAIN: NaiveIdentitySampler
+  NUM_INSTANCE: 4
+  NUM_WORKERS: 8
+
+SOLVER:
+  GROUP_LR: True
+  SPECIAL_LAYERS:
+
+  AMP:
+    ENABLED: True
+
+  OPT: AdamW
+  MAX_EPOCH: 120
+  BASE_LR: 1e-4
+  WEIGHT_DECAY: 1e-3
+  IMS_PER_BATCH: 128
+  SCHED: CosineAnnealingLR
+  ETA_MIN_LR: 0.00000001
+
+  WARMUP_FACTOR: 0.01
+  WARMUP_ITERS: 2000
+
+  CLIP_GRADIENTS:
+    ENABLED: True
+
+  CHECKPOINT_PERIOD: 5
+
+TEST:
+  EVAL_PERIOD: 5
+  IMS_PER_BATCH: 1024
+
+CUDNN_BENCHMARK: True
+
+DATASETS:
+  NAMES: ("AG_ReID",)
+  TESTS: ("AG_ReID", "AG_ReID_G2A")
+
+OUTPUT_DIR: log/AG_ReID/DINOv3q
+

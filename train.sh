@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=7 python3 tools/train_net.py --config-file ./configs/CARGO/Vit_base.yml MODEL.DEVICE "cuda:0"
