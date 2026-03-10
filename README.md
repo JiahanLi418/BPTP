@@ -42,7 +42,7 @@ Download the ViT-base Pre-trained model and modify the path. Line 11 in [BPTP.ym
 > PRETRAIN_PATH: XXX
 
 ### Training & Testing
-Training VDT on the CARGO dataset with one GPU:
+Training BPTP on the CARGO dataset with one GPU:
 ```
 CUDA_VISIBLE_DEVICES=0 python3 tools/train_net.py --config-file ./configs/CARGO/BPTP.yml MODEL.DEVICE "cuda:0"
 ```
